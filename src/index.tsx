@@ -1,4 +1,4 @@
-import { Elysia, t } from "elysia";
+import { Elysia } from "elysia";
 import { html } from "@elysiajs/html";
 import * as elements from "typed-html";
 
