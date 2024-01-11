@@ -7,7 +7,7 @@ import { BaseHtml } from "./components/BaseHTML";
 const app = new Elysia()
     .use(html())
     .get("/", () => <BaseHtml />)
-    .post("/post", () => <p>htmx</p>)
+    .post("/post", () => <p>Welcome HTMX</p>)
     .get("styles.css", () => Bun.file("src/assets/css/output.css"))
     .listen(
         {
