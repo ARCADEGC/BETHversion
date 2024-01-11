@@ -1,4 +1,13 @@
+import { Elysia, t } from "elysia";
 import * as elements from "typed-html";
+
+export const plugin = new Elysia({
+    name: "BaseHtmlPostPlugin",
+}).post("/post/:id", ({ params }) => <p>Welcome HTMX {params.id}!</p>, {
+    params: t.Object({
+        id: t.Numeric(),
+    }),
+});
 
 export const BaseHtml = () => `
 <!DOCTYPE html>

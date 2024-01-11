@@ -2,16 +2,12 @@ import { Elysia, t } from "elysia";
 import { html } from "@elysiajs/html";
 import * as elements from "typed-html";
 
-import { BaseHtml } from "./components/BaseHTML";
+import { BaseHtml, plugin } from "./components/BaseHTML";
 
 const app = new Elysia()
     .use(html())
+    .use(plugin)
     .get("/", () => <BaseHtml />)
-    .post("/post/:id", ({ params }) => <p>Welcome HTMX {params.id}!</p>, {
-        params: t.Object({
-            id: t.Numeric(),
-        }),
-    })
     .get("styles.css", () => Bun.file("src/assets/css/output.css"))
     .listen(
         {
