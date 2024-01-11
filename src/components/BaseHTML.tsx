@@ -16,7 +16,7 @@ ${(
         <section>
             <h1 class="text-slate-100">Hello</h1>
             <button
-                hx-post="/post"
+                hx-post="/post/1"
                 hx-swap="afterend"
                 class="rounded-lg bg-white px-8 py-2 font-semibold uppercase tracking-wide text-black transition-colors duration-300 hover:bg-white/25 hover:text-white"
             >

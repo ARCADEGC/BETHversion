@@ -1,4 +1,4 @@
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
 import { html } from "@elysiajs/html";
 import * as elements from "typed-html";
 
@@ -7,7 +7,11 @@ import { BaseHtml } from "./components/BaseHTML";
 const app = new Elysia()
     .use(html())
     .get("/", () => <BaseHtml />)
-    .post("/post", () => <p>Welcome HTMX</p>)
+    .post("/post/:id", ({ params }) => <p>Welcome HTMX {params.id}!</p>, {
+        params: t.Object({
+            id: t.Numeric(),
+        }),
+    })
     .get("styles.css", () => Bun.file("src/assets/css/output.css"))
     .listen(
         {
