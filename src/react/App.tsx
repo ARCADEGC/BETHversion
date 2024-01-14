@@ -1,27 +1,29 @@
 import { Elysia, t } from "elysia";
 import React, { useState } from "react";
 import { renderToString } from "react-dom/server";
+import { htmlPlugin } from "src/elysia/html";
 
 import { Button } from "@/components/ui/button";
 
 export const plugin = new Elysia({
     name: "buttonpostplugin",
-}).post(
-    "/post/:id",
-    ({ params, set }) => {
-        set.headers["Content-Type"] = "text/html";
-        return renderToString(
-            <Button hx-post="/post/1" hx-swap="afterend">
-                params.id: {params.id}
-            </Button>,
-        );
-    },
-    {
-        params: t.Object({
-            id: t.Numeric(),
-        }),
-    },
-);
+})
+    .use(htmlPlugin)
+    .post(
+        "/post/:id",
+        ({ params }) => {
+            return renderToString(
+                <Button hx-post="/post/1" hx-swap="afterend">
+                    params.id: {params.id}
+                </Button>,
+            );
+        },
+        {
+            params: t.Object({
+                id: t.Numeric(),
+            }),
+        },
+    );
 
 export function App() {
     return (
