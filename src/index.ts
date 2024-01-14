@@ -25,4 +25,11 @@ const app = new Elysia()
             headers: { "Content-Type": "text/html" },
         });
     })
-    .listen(3000);
+    .listen(
+        {
+            hostname: "127.0.0.1",
+            port: "4500",
+        },
+        ({ hostname, port }) =>
+            console.log(`🦊 Elysia is running on http://${hostname}:${port}`),
+    );
